@@ -13,23 +13,18 @@ here is a perfect circle like
    ###        ###
        ######
 
-this is more likely to be a circle right?
-how to do this
-
-clearly we know about this:
-(x-a)**2+(y-b)**2=R**2
-
-####
-###
-##
-#
-
                           ######
                        ##        ##
                       #            #
                       #            #
                        ##        ##        
                           ######
+
+this is more likely to be a circle right?
+how to do this
+
+clearly we know about this:
+(x-a)**2+(y-b)**2=R**2
 """
 def calculate_wide_and_length(radius):
     width = int(radius*2.7)
@@ -49,18 +44,11 @@ def draw_circle(radius):
                 print("#", end=" ")
             else:
                 print(" ", end=" ")
-
         print()
-
 """
-test
+test,
+clearly there exists problems when radius is higher
 """
 draw_circle(5)
 draw_circle(10)
 draw_circle(18)
-
-
-
-"""
-clearly there exists problems when radius
-"""
