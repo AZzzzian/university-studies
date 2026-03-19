@@ -1,87 +1,46 @@
 import math
 """
-so there are problems here
-1. no dot to use
-2."#" has different width and length
-here is a perfect circle like
-       ######
-   ###        ###
- ##              ##
-#                  #
-#                  #
- #               ##
-   ###        ###
-       ######
-
-this is more likely to be a circle right?
-how to do this
-
-clearly we know about this:
-(x-a)**2+(y-b)**2=R**2
-or the triangle contain r and
-
-####
-###
-##
-#
-
-                          ######
-                       ##        ##
-                      #            #
-                      #            #
-                       ##        ##        
-                          ######
+Draw an ASCII circle with aspect-ratio correction and light supersampling so it
+looks rounder on typical terminals. "x" draws the outline, "#" marks the center.
 """
-def calculate_wide_and_length(radius):
-    width = int(radius*2.7)
-    length = int(radius)
-    return width,length
-
-def draw_circle(radius):
-    width,length = calculate_wide_and_length(radius)
-    aspect_ratio=1.5
-    for y in range(length*2+1):
-        for x in range(width*2+1):
-               adjusted_x=x / aspect_ratio
-               distance = math.sqrt(math.pow(y - radius, 2) + math.pow(adjusted_x-radius, 2))
-               if (distance > radius - 0.08*radius and distance < radius + 0.08*radius):
-                      print("x", end=" ")
-               elif x == radius and y == radius:
-                      print("#", end=" ")
-               else:
-                      print(" ", end=" ")
-
-        print()
-draw_circle(5)
-draw_circle(10)
-draw_circle(20)
-
-#
-# calculate_wide_and_length(5)
-# print()
-# calculate_wide_and_length(10)
-# print()
-# calculate_wide_and_length(20)
-# print()
-# calculate_wide_and_length(30)
-#
-#
-#
-
-# def print_circle(radius):
-#     for x in range((2 * radius)+1):
-#         for y in range((2 * radius)+1):
-#             length = math.sqrt(math.pow((x - radius), 2) + math.pow((y - radius), 2))
-#             if (length > radius - 0.5 and length < radius + 0.5):
-#                 print("x", end = " ")
-#             else:
-#                 print(" ", end = " ")
-#         print()
-#
-# print_circle(10)
 
 
+def draw_circle(radius, aspect_ratio=0.46, thickness=0.35):
+    """Render a circle; tweak aspect_ratio to match your font (width/height)."""
+    # Sample four sub-points per cell to reduce blocky edges.
+    samples = ((0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75))
 
+    # Stretch x-range based on aspect ratio; extra margin avoids clipping.
+    x_extent = int(math.ceil(radius / aspect_ratio)) + 1
+
+    for y in range(-radius - 1, radius + 2):
+        row_chars = []
+        for x in range(-x_extent - 1, x_extent + 2):
+            hits = 0
+            for sx, sy in samples:
+                dx = (x + sx) * aspect_ratio
+                dy = y + sy
+                distance = math.hypot(dx, dy)
+                if radius - thickness <= distance <= radius + thickness:
+                    hits += 1
+
+            coverage = hits / len(samples)
+            if coverage >= 0.5:
+                row_chars.append("x")
+            elif x == 0 and y == 0:
+                row_chars.append("#")
+            else:
+                row_chars.append(" ")
+
+        # Avoid extra spaces that can distort width; join directly.
+        print("".join(row_chars))
+
+
+if __name__ == "__main__":
+    # Tune aspect_ratio to your font: try 0.45-0.5 if still tall/flat.
+    draw_circle(5, aspect_ratio=0.46)
+    draw_circle(10, aspect_ratio=0.46)
+    draw_circle(20, aspect_ratio=0.46)
 
 
 
