@@ -41,7 +41,7 @@ def draw_circle(radius):
     width,length = calculate_wide_and_length(radius)
     aspect_ratio=1.5
     for y in range(length*2+1):
-        for x in range(width*2+):
+        for x in range(width*2+1):
                adjusted_x=x / aspect_ratio
                distance = math.sqrt(math.pow(y - radius, 2) + math.pow(adjusted_x-radius, 2))
                if (distance > radius - 0.08*radius and distance < radius + 0.08*radius):
