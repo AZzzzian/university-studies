@@ -26,25 +26,29 @@ how to do this
 clearly we know about this:
 (x-a)**2+(y-b)**2=R**2
 """
-def calculate_wide_and_length(radius):
-    width = int(radius*2.7)
-    length = int(radius)
-    return width,length
 
-def draw_circle(radius):
-    width,length = calculate_wide_and_length(radius)
-    aspect_ratio=1.5
-    for y in range(length*2+1):
-        for x in range(width*2):
-            adjusted_x=x/aspect_ratio
-            distance = math.sqrt(math.pow(y - radius, 2) + math.pow(adjusted_x-radius, 2))
+"""
+you just need to change the"aspect_ratio" to find your perfect size
+"""
+aspect_ratio = 2.7
+
+def calculate_width_length_circle(radius):
+    return radius, radius*aspect_ratio
+
+def print_circle(radius):
+    height, width = calculate_width_length_circle(radius)
+    for y in range(int(height*2+1)):
+        for x in range(int(width*2+1)):
+
+            distance = math.sqrt(math.pow(y - radius, 2)+ math.pow(x/aspect_ratio-radius, 2))
             if (distance > radius - 0.5 and distance < radius + 0.5):
-                print("x", end=" ")
-            elif x == int(radius*aspect_ratio) and y == radius:
-                print("#", end=" ")
+                print("#",end="")
+            elif x==aspect_ratio*radius and y==radius:
+                print("X",end="")
             else:
-                print(" ", end=" ")
+                print(" ",end="")
         print()
+    print()
 """
 test,
 clearly there exists problems when radius is higher
