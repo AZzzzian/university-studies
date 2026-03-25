@@ -28,7 +28,7 @@ clearly we know about this:
 """
 
 """
-you just need to change the"aspect_ratio" to find your perfect size
+you just need to change the"aspect_ratio" to find your perfect screen size
 """
 aspect_ratio = 2.7
 
@@ -50,8 +50,7 @@ def print_circle(radius):
         print()
     print()
 """
-test,
-clearly there exists problems when radius is higher
+if i not wrong, it should be fit to every size now
 """
 draw_circle(5)
 draw_circle(10)
