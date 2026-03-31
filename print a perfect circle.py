@@ -43,7 +43,7 @@ def print_circle(radius):
             distance = math.sqrt(math.pow(y - radius, 2)+ math.pow(x/aspect_ratio-radius, 2))
             if (distance > radius - 0.5 and distance < radius + 0.5):
                 print("#",end="")
-            elif x==aspect_ratio*radius and y==radius:
+            elif x==int(aspect_ratio*radius) and y==radius:
                 print("X",end="")
             else:
                 print(" ",end="")
