@@ -1,35 +1,6 @@
 import math
-"""
-so there are problems here
-1. no dot to use
-2."#" has different width and length
-here is a perfect circle like
-       ######
-   ###        ###
- ##              ##
-#                  #
-#                  #
- #               ##
-   ###        ###
-       ######
 
-                          ######
-                       ##        ##
-                      #            #
-                      #            #
-                       ##        ##        
-                          ######
 
-this is more likely to be a circle right?
-how to do this
-
-clearly we know about this:
-(x-a)**2+(y-b)**2=R**2
-"""
-
-"""
-you just need to change the"aspect_ratio" to find your perfect screen size
-"""
 aspect_ratio = 2.7
 
 def calculate_width_length_circle(radius):
